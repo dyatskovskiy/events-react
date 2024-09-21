@@ -1,5 +1,12 @@
-import css from "./App.module.css";
-
+import { Route, Routes } from "react-router";
+import { Container } from "./components/Container/Container";
+import EventsBoard from "./pages/EventsBoard/EventsBoard";
 export const App = () => {
-  return <div>App </div>;
+  return (
+    <Container>
+      <Routes>
+        <Route path="/" element={<EventsBoard />} />
+      </Routes>
+    </Container>
+  );
 };
