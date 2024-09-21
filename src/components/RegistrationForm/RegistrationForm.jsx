@@ -28,7 +28,7 @@ export const RegistrationForm = () => {
             className={css.radioButton}
             type="radio"
             id="social"
-            name="where"
+            name="discoveryMethod"
             value="social"
           />
 
@@ -40,7 +40,7 @@ export const RegistrationForm = () => {
             className={css.radioButton}
             type="radio"
             id="friends"
-            name="where "
+            name="discoveryMethod"
             value="friends"
           />
 
@@ -52,7 +52,7 @@ export const RegistrationForm = () => {
             className={css.radioButton}
             type="radio"
             id="myself"
-            name="where"
+            name="discoveryMethod"
             value="myself"
           />
 
