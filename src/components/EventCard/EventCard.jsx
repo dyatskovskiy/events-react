@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import css from "./EventCard.module.css";
 
 export const EventCard = ({ eventDetails }) => {
@@ -13,13 +14,21 @@ export const EventCard = ({ eventDetails }) => {
       </div>
 
       <div className={css.buttonsBlock}>
-        <button className={css.button} type="button">
+        <Link
+          to={`/registration/${eventDetails.id}`}
+          className={css.link}
+          type="button"
+        >
           Register
-        </button>
+        </Link>
 
-        <button className={css.button} type="button">
+        <Link
+          to={`/participants/${eventDetails.id}`}
+          className={css.link}
+          type="button"
+        >
           View
-        </button>
+        </Link>
       </div>
     </div>
   );

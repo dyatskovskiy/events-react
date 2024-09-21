@@ -4,14 +4,18 @@ import { EventCard } from "../EventCard/EventCard";
 
 export const EventsList = () => {
   return (
-    <ul className={css.list}>
-      {events.map((eventData) => {
-        return (
-          <li key={eventData.id}>
-            <EventCard eventDetails={eventData} />
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <h1 className={css.title}>Events</h1>
+
+      <ul className={css.list}>
+        {events.map((eventData) => {
+          return (
+            <li key={eventData.id}>
+              <EventCard eventDetails={eventData} />
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 };

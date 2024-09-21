@@ -1,0 +1,19 @@
+.cardWrapper {
+  border: 1px solid var(--main-grey);
+  border-radius: 4px;
+
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.name {
+  font-size: 18px;
+}
+
+.email {
+  font-style: italic;
+  font-size: 14px;
+}
