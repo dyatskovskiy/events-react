@@ -30,9 +30,7 @@ const EventsBoard = () => {
 
   return (
     <PageWrapper>
-      {isLoading && <Loader />}
-
-      {events && <EventsList events={events} />}
+      {isLoading ? <Loader /> : <EventsList events={events} />}
 
       <Toaster />
     </PageWrapper>
