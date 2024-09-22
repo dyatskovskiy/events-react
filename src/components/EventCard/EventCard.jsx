@@ -14,18 +14,14 @@ export const EventCard = ({ eventDetails }) => {
       </div>
 
       <div className={css.buttonsBlock}>
-        <Link
-          to={`/registration/${eventDetails.id}`}
-          className={css.link}
-          type="button"
-        >
+        <Link to={`/registration/${eventDetails._id}`} className={css.link}>
           Register
         </Link>
 
         <Link
-          to={`/participants/${eventDetails.id}`}
+          to={`/participants/${eventDetails._id}`}
+          state={{ title }}
           className={css.link}
-          type="button"
         >
           View
         </Link>

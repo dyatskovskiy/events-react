@@ -10,8 +10,8 @@ export const App = () => {
     <Container>
       <Routes>
         <Route path="/" element={<EventsBoard />} />
-        <Route path="/participants/:id" element={<Participants />} />
-        <Route path="/registration/:id" element={<Registration />} />
+        <Route path="/participants/:eventId" element={<Participants />} />
+        <Route path="/registration/:eventId" element={<Registration />} />
       </Routes>
     </Container>
   );
