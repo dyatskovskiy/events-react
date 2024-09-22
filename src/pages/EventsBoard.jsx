@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { PageWrapper } from "../components/PageWrapper/PageWrapper";
 import { EventsList } from "../components/EventsList/EventsList";
 import { fetchEvents } from "../services/events-api";
+import { Toaster } from "react-hot-toast";
+import { showNotification } from "../services/show-notification";
+import { Loader } from "../components/Loader/Loader";
 
 const EventsBoard = () => {
   const [events, setEvents] = useState([]);
-  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -17,7 +19,7 @@ const EventsBoard = () => {
         setEvents(events);
       } catch (error) {
         setIsLoading(false);
-        setError(error);
+        showNotification(false, error.response.data.message);
       } finally {
         setIsLoading(false);
       }
@@ -28,9 +30,11 @@ const EventsBoard = () => {
 
   return (
     <PageWrapper>
-      {isLoading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {isLoading && <Loader />}
+
       {events && <EventsList events={events} />}
+
+      <Toaster />
     </PageWrapper>
   );
 };

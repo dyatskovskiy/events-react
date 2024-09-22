@@ -1,24 +1,67 @@
+import { useState } from "react";
+import { useParams } from "react-router";
+import { registerNewParticipant } from "../../services/events-api";
+import { createDtoFromFormValues } from "../../services/create-dto-from-form-values";
 import css from "./RegistrationForm.module.css";
+import { showNotification } from "../../services/show-notification";
+import { Toaster } from "react-hot-toast";
+import { Loader } from "../Loader/Loader";
 
 export const RegistrationForm = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { eventId } = useParams();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const dataTransferObject = createDtoFromFormValues(
+      e.target.elements,
+      eventId
+    );
+
+    try {
+      setIsLoading(true);
+      const response = await registerNewParticipant(dataTransferObject);
+
+      if (response.status === 201) {
+        showNotification(true, "Successfully registered");
+      }
+    } catch (error) {
+      setIsLoading(false);
+      showNotification(false, error.response.data.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div>
+      {isLoading && <Loader />}
+
       <h1 className={css.title}>Event registration</h1>
 
-      <form className={css.form}>
+      <form className={css.form} onSubmit={(e) => handleSubmit(e)}>
         <div className={css.inputBlock}>
           <label htmlFor="name" className={css.inputLabel}>
             Full name
           </label>
           <input className={css.input} type="text" id="name" name="name" />
+
           <label htmlFor="email" className={css.inputLabel}>
             Email
           </label>
           <input className={css.input} type="text" id="email" name="email" />
-          <label htmlFor="date" className={css.inputLabel}>
+
+          <label htmlFor="dateOfBirth" className={css.inputLabel}>
             Date of birth
           </label>
-          <input className={css.input} type="date" id="date" name="date" />
+          <input
+            className={css.input}
+            type="date"
+            id="dateOfBirth"
+            name="dateOfBirth"
+          />
         </div>
 
         <div className={css.radioBlock}>
@@ -65,6 +108,8 @@ export const RegistrationForm = () => {
           Register
         </button>
       </form>
+
+      <Toaster />
     </div>
   );
 };

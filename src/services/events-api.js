@@ -15,3 +15,14 @@ export const fetchParticipantsByEventId = async (eventId) => {
 
   return participants;
 };
+
+export const registerNewParticipant = async ({ participant, eventId }) => {
+  const newParticipant = await axios
+    .post(`/participants`, {
+      participant,
+      eventId,
+    })
+    .then((res) => res);
+
+  return newParticipant;
+};

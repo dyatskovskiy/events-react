@@ -3,10 +3,12 @@ import { useLocation, useParams } from "react-router";
 import { PageWrapper } from "../components/PageWrapper/PageWrapper";
 import { ParticipantList } from "../components/ParticipantsList/ParticipantList";
 import { fetchParticipantsByEventId } from "../services/events-api";
+import { Loader } from "../components/Loader/Loader";
+import { showNotification } from "../services/show-notification";
+import { Toaster } from "react-hot-toast";
 
 const Participants = () => {
   const [participants, setParticipants] = useState([]);
-  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   const { eventId } = useParams();
@@ -23,7 +25,7 @@ const Participants = () => {
         setParticipants(participants);
       } catch (error) {
         setIsLoading(false);
-        setError(error);
+        showNotification(false, error.response.data.message);
       } finally {
         setIsLoading(false);
       }
@@ -34,9 +36,10 @@ const Participants = () => {
 
   return (
     <PageWrapper>
-      {isLoading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {isLoading && <Loader />}
       <ParticipantList eventName={title} participants={participants} />
+
+      <Toaster />
     </PageWrapper>
   );
 };
