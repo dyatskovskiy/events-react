@@ -4,8 +4,6 @@ import { EventCard } from "../EventCard/EventCard";
 export const EventsList = ({ events }) => {
   return (
     <>
-      <h1 className={css.title}>Events</h1>
-
       {events.length > 0 ? (
         <ul className={css.list}>
           {events.map((eventData) => {

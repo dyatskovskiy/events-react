@@ -5,15 +5,54 @@ import { fetchEvents } from "../services/events-api";
 import { showNotification } from "../services/show-notification";
 import { Toaster } from "react-hot-toast";
 import { RotatingLines } from "react-loader-spinner";
+import { sortEvents } from "../services/sort-events";
+import { SortPanel } from "../components/SortPanel/SortPanel";
 
 const EventsBoard = () => {
   const [events, setEvents] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [currentPage, setCurrentPage] = useState(null);
   const [totalPages, setTotalPages] = useState(null);
+
   const triggerRef = useRef(null);
 
-  const [isLoading, setIsLoading] = useState(false);
+  // Sort, defaults: ascending + title
+  const [sortOrder, setSortOrder] = useState("ascending");
+  const [sortBy, setSortBy] = useState("title");
+
+  const sortedEvents = sortEvents(events, sortBy, sortOrder);
+
+  const onTitleClick = () => {
+    setSortBy("title");
+    if (sortOrder === "descending") {
+      setSortOrder("ascending");
+    } else {
+      setSortOrder("descending");
+    }
+  };
+
+  const onDateClick = () => {
+    setSortBy("eventDate");
+
+    if (sortOrder === "descending") {
+      setSortOrder("ascending");
+    } else {
+      setSortOrder("descending");
+    }
+  };
+
+  const onOrganizerClick = () => {
+    setSortBy("organizer");
+
+    if (sortOrder === "descending") {
+      setSortOrder("ascending");
+    } else {
+      setSortOrder("descending");
+    }
+  };
+
+  // =======================
 
   // Effect to fetch events
   useEffect(() => {
@@ -65,9 +104,17 @@ const EventsBoard = () => {
 
   return (
     <PageWrapper>
-      <EventsList events={events} />
+      <h1 style={{ marginBottom: "20px", textAlign: "center" }}>Events</h1>
 
-      <div id="trigger" ref={triggerRef} style={{ height: "1px" }}></div>
+      <SortPanel
+        onTitleClick={onTitleClick}
+        onDateClick={onDateClick}
+        onOrganizerClick={onOrganizerClick}
+        order={sortOrder}
+      />
+      <EventsList events={sortedEvents} />
+
+      <div id="trigger" ref={triggerRef}></div>
 
       {isLoading && (
         <RotatingLines

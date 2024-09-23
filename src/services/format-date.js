@@ -1,7 +1,7 @@
 export const formatDate = (rawDate) => {
   const date = new Date(rawDate);
 
-  const day = date.getDay();
+  const day = date.getDate();
   const month = date.toLocaleString("en-US", { month: "short" });
   const year = date.getFullYear();
 
