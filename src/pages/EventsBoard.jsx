@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import { RotatingLines } from "react-loader-spinner";
 import { sortEvents } from "../services/sort-events";
 import { SortPanel } from "../components/SortPanel/SortPanel";
+import { Loader } from "../components/Loader/Loader";
 
 const EventsBoard = () => {
   const [events, setEvents] = useState([]);
@@ -105,7 +106,6 @@ const EventsBoard = () => {
   return (
     <PageWrapper>
       <h1 style={{ marginBottom: "20px", textAlign: "center" }}>Events</h1>
-
       <SortPanel
         onTitleClick={onTitleClick}
         onDateClick={onDateClick}
@@ -113,10 +113,8 @@ const EventsBoard = () => {
         order={sortOrder}
       />
       <EventsList events={sortedEvents} />
-
       <div id="trigger" ref={triggerRef}></div>
-
-      {isLoading && (
+      {isLoading && events.length > 0 ? (
         <RotatingLines
           visible={true}
           height="96"
@@ -126,6 +124,8 @@ const EventsBoard = () => {
           animationDuration="0.75"
           ariaLabel="rotating-lines-loading"
         />
+      ) : (
+        isLoading && <Loader />
       )}
 
       <Toaster />
