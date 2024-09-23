@@ -57,6 +57,7 @@ const EventsBoard = () => {
 
     return () => {
       if (triggerRef.current) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         observer.unobserve(triggerRef.current);
       }
     };
