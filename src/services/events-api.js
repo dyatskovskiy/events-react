@@ -2,10 +2,12 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://events-api-56xx.onrender.com/";
 
-export const fetchEvents = async () => {
-  const events = await axios.get("/events").then((res) => res.data);
+export const fetchEvents = async (page, limit) => {
+  const response = await axios
+    .get(`/events?page=${page}&limit=${limit}`)
+    .then((res) => res.data);
 
-  return events;
+  return response;
 };
 
 export const fetchParticipantsByEventId = async (eventId) => {
