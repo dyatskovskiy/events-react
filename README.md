@@ -12,5 +12,5 @@ This application is designed for managing events, allowing users to view, sort e
 ## Technologies
 
 - **Frontend**: React (using Vite bundler), Axios, React Hook Forms, React Hot Toast, React Date Picker, React Loader
-- **Backend**: Nest.js
+- **Backend**: Nest.js - [Backend Repository](https://github.com/dyatskovskiy/events-nest-api)
 - **Database**: MongoDB
