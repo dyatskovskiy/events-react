@@ -167,7 +167,7 @@ export const RegistrationForm = () => {
           </label>
         </div>
 
-        <button className={css.button} type="submit">
+        <button className={css.button} type="submit" disabled={isLoading}>
           Register
         </button>
       </form>
