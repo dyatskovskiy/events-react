@@ -19,14 +19,14 @@ const EventsBoard = () => {
   const triggerRef = useRef(null);
 
   // Sort, defaults: ascending + title
-  const [sortOrder, setSortOrder] = useState("ascending");
-  const [sortBy, setSortBy] = useState("title");
+  const [sortOrder, setSortOrder] = useState("");
+  const [sortBy, setSortBy] = useState("");
 
   const sortedEvents = sortEvents(events, sortBy, sortOrder);
 
   const onTitleClick = () => {
     setSortBy("title");
-    if (sortOrder === "descending") {
+    if (sortOrder === "descending" || !sortOrder) {
       setSortOrder("ascending");
     } else {
       setSortOrder("descending");
@@ -36,7 +36,7 @@ const EventsBoard = () => {
   const onDateClick = () => {
     setSortBy("eventDate");
 
-    if (sortOrder === "descending") {
+    if (sortOrder === "descending" || !sortOrder) {
       setSortOrder("ascending");
     } else {
       setSortOrder("descending");
@@ -46,7 +46,7 @@ const EventsBoard = () => {
   const onOrganizerClick = () => {
     setSortBy("organizer");
 
-    if (sortOrder === "descending") {
+    if (sortOrder === "descending" || !sortOrder) {
       setSortOrder("ascending");
     } else {
       setSortOrder("descending");

@@ -8,7 +8,9 @@ export const SortPanel = ({
 }) => {
   return (
     <div className={css.wrapper}>
-      <p className={css.text}>Sort {order === "ascending" ? "↓" : "↑"}:</p>
+      <p className={css.text}>
+        Sort {order ? (order === "ascending" ? "↓" : "↑") : ""}:
+      </p>
 
       <button className={css.button} onClick={onTitleClick}>
         Title

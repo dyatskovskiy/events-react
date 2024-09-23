@@ -1,4 +1,8 @@
 export const sortEvents = (events, sortBy, sortOrder) => {
+  if (!sortBy || !sortOrder) {
+    return events;
+  }
+
   const sortedEvents = events.sort((a, b) => {
     const aValue = a[sortBy];
     const bValue = b[sortBy];
