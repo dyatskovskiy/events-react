@@ -105,7 +105,7 @@ const EventsBoard = () => {
 
   return (
     <PageWrapper>
-      <h1 style={{ marginBottom: "20px", textAlign: "center" }}>Events</h1>
+      <h1>Events</h1>
       <SortPanel
         onTitleClick={onTitleClick}
         onDateClick={onDateClick}

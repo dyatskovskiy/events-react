@@ -67,7 +67,7 @@ export const RegistrationForm = () => {
     <div>
       {isLoading && <Loader />}
 
-      <h1 className={css.title}>Event registration</h1>
+      <h1>Event registration</h1>
 
       <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
         <div className={css.inputBlock}>
