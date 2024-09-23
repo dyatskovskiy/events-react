@@ -52,6 +52,10 @@
   transform: scale(1.1);
 }
 
+.button:active {
+  transform: scale(1.05);
+}
+
 .error {
   color: var(--error-color);
   font-size: 14px;

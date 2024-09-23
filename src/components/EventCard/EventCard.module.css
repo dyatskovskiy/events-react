@@ -48,4 +48,14 @@
   text-align: center;
   font-size: 14px;
   height: min-content;
+
+  transition: transform 150ms linear;
+}
+
+.link:is(:hover, :focus) {
+  transform: scale(1.1);
+}
+
+.link:active {
+  transform: scale(1.05);
 }
